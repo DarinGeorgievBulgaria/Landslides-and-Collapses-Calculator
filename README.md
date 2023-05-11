@@ -1,1 +1,0 @@
-# Landslides-and-Collapses-Calculator
