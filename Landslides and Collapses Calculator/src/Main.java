@@ -9,7 +9,6 @@ public class Main {
         double numRiskFactors;
         while (true){
             System.out.println("Enter number of Risk Factors"); // TT: Въведете брой рискови фактори.
-
             try{
                 numRiskFactors = reader.nextDouble();
             }catch (InputMismatchException e){
