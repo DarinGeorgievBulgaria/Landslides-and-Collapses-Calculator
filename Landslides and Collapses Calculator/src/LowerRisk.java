@@ -50,17 +50,24 @@ public class LowerRisk implements Risk{
                     continue;
                 }
             if(residualRisk.compareTo(new BigDecimal("0.00001"))>=0 && acceptableRisk.compareTo(new BigDecimal("0.0001"))>=0){
-                //measureRisk(frequency);
                 reader.close();
                 break;
             }
             else {
-                System.out.println("Please enter a number within the boundaries2"); // ТТ: Моля въведете чусло между границите.
+                System.out.println("Please enter a number within the boundaries"); // ТТ: Моля въведете чусло между границите.
             }
             }
             if(residualRisk.compareTo(acceptableRisk)<=0){
                 System.out.println("Tolerable level of residual risk");
+
                 //END !!!!
+            }
+            if(residualRisk.compareTo(acceptableRisk)>0){
+                System.out.println("The type of personal protective equipment have to be reconsidered.");
+                residualRisk();
+            }
+            else{
+                System.out.println("Error");
             }
         }
 
