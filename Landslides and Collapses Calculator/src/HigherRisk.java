@@ -16,8 +16,9 @@ public class HigherRisk implements Risk {
             double inputNumPrev;
             double inputPrevMax;
             String input;
+            frame.getTextArea().append("\n" + "Enter the value of preventive activities:");
+            System.out.println("Enter the value of preventive activities:");
             while (true) {
-                System.out.println("Enter the value of preventive activities:");
                 try {
                     while (true) {
                         if (frame.getInputNum() != null) {
@@ -48,9 +49,9 @@ public class HigherRisk implements Risk {
             }
             System.out.println("Economic feasibility criterion");
             frame.getTextArea().setText("Economic feasibility criterion\n");
+            System.out.println("Enter the maximum value of the preventive activities:");
+            frame.getTextArea().append("Enter the maximum value of the preventive activities:");
             while (true) {
-                System.out.println("Enter the maximum value of the preventive activities:");
-                frame.getTextArea().append("Enter the maximum value of the preventive activities:");
                 try {
                     while (true) {
                         if (frame.getInputNum() != null) {
@@ -81,7 +82,7 @@ public class HigherRisk implements Risk {
             if (inputNumPrev <= inputPrevMax) {
                 System.out.println("very high to just high");
                 printInfo("high");
-                LowerRisk highToLow = new LowerRisk("medium to low");
+                LowerRisk highToLow = new LowerRisk("medium",frame);
             }
             else {
                 JOptionPane.showMessageDialog(frame,"Economically inexpedient preventive activities. \nNecessity of route change.","Info", JOptionPane.PLAIN_MESSAGE);

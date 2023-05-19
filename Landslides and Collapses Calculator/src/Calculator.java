@@ -56,15 +56,15 @@ public class Calculator {
         }
         else if(freq.compareTo(new BigDecimal("0.01"))<0 && freq.compareTo(new BigDecimal("0.001"))>0){ //0.01>freq>0.001
             System.out.println("M - Medium level of risk");
-            LowerRisk mediumRisk = new LowerRisk("medium");
+            LowerRisk mediumRisk = new LowerRisk("medium",newFrame);
         }
         else if(freq.compareTo(new BigDecimal("0.001"))<0 && freq.compareTo(new BigDecimal("0.0001"))>0){ //0.001>freq>0.0001
             System.out.println("L - Low level of risk");
-            LowerRisk lowRisk = new LowerRisk("low");
+            LowerRisk lowRisk = new LowerRisk("low", newFrame);
         }
         else if(freq.compareTo(new BigDecimal("0.0001"))<0 && freq.compareTo(new BigDecimal("0.00001"))>0){ //0.0001>freq>0.00001
             System.out.println("VL - very low level of risk");
-            LowerRisk veryLowRisk = new LowerRisk("very low");
+            LowerRisk veryLowRisk = new LowerRisk("very low", newFrame);
         }
         else if(freq.compareTo(new BigDecimal("0.00001"))<0){   //freq<0.00001
             System.out.println("Acceptable risk");
