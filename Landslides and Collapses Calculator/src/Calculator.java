@@ -30,7 +30,7 @@ public class Calculator {
                 frequency = new BigDecimal(input);
             }catch (InputMismatchException | NumberFormatException | InterruptedException e){
                 System.out.println("Please enter a number within the boundaries");
-                JOptionPane.showMessageDialog(newFrame,"Please use a natural number!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(newFrame,"Please enter a number within the boundaries!","Wrong input", JOptionPane.PLAIN_MESSAGE);
                 newFrame.setInputNum(null);
                 continue;
             }

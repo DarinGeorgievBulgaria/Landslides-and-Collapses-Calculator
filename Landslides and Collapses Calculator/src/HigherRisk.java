@@ -81,10 +81,7 @@ public class HigherRisk implements Risk {
                 }
             }
             if (inputNumPrev <= inputPrevMax) {
-                System.out.println("very high to just high");
-                printInfo("high");
-                Thread.sleep(5000);
-                LowerRisk highToLow = new LowerRisk("medium",frame);
+                highLevel();
             }
             else {
                 //JOptionPane.showMessageDialog(frame,"Economically inexpedient preventive activities. \nNecessity of route change.","Info", JOptionPane.PLAIN_MESSAGE);
@@ -93,8 +90,16 @@ public class HigherRisk implements Risk {
                 frame.restartProgram(frame, "Economically inexpedient preventive activities. \nNecessity of route change.\n");
             }
         }
+        else if(level.equals("high")){
+            highLevel();
+        }
     }
-
+        public void highLevel() throws InterruptedException {
+            System.out.println("very high to just high");
+            printInfo("high");
+            Thread.sleep(5000);
+            LowerRisk highToLow = new LowerRisk("medium",frame);
+        }
         @Override
         public void printInfo (String level){
             System.out.println("That is " + level + " level of risk"); // ТТ: МВ - Много високо ниво на риск.
