@@ -6,22 +6,19 @@ import java.util.Scanner;
 public class LowerRisk implements Risk{
     private String level;
     private NewFrame frame;
-    public LowerRisk(String level, NewFrame frame){
+    public LowerRisk(String level, NewFrame frame) throws InterruptedException {
         this.level = level;
         this.frame = frame;
         frame.getTextArea().setText("");
         frame.setInputNum(null);
         if(level.equals("medium")){
-            printInfo(level);
-            residualRisk();
+            residualRisk(level);
         }
         else if(level.equals("low")){
-            printInfo(level);
-            residualRisk();
+            residualRisk(level);
         }
         else if(level.equals("very low")){
-            printInfo(level);
-            residualRisk();
+            residualRisk(level);
         }
     }
     @Override
@@ -29,13 +26,13 @@ public class LowerRisk implements Risk{
         System.out.println("That is "+ level + " level of risk"); // ТТ: МВ - Много високо ниво на риск.
         System.out.println("Determination of preventive construction and installation works on the site to reduce the "+ level + " level of risk"); // ТТ: Определяне на превантивни строително монтажни работи  на обекта за намаляване нивото на риска
         System.out.println("Determining the type of personal protective equipment");
-        frame.getTextArea().setText("That is" + level +  "level of risk \n");
-        frame.getTextArea().append("Determination of preventive construction and installation works on the site to reduce the "+ level + " level of \n");
+        frame.getTextArea().setText("That is " + level +  " level of risk. \n");
+        frame.getTextArea().append("Determination of preventive construction and installation works on the site to reduce the "+ level + " level of risk. \n");
         frame.getTextArea().append("Determining the type of personal protective equipment. \n");
     }
 
-    public void residualRisk(){
-        Scanner reader = new Scanner(System.in);
+    public void residualRisk(String newLevel) throws InterruptedException {
+        printInfo(newLevel);
         BigDecimal residualRisk;
         BigDecimal acceptableRisk;
         String input;
@@ -103,13 +100,13 @@ public class LowerRisk implements Risk{
             }
             if(residualRisk.compareTo(acceptableRisk)<=0){
                 System.out.println("Tolerable level of residual risk");
-                frame.getTextArea().setText("Tolerable level of residual risk.");
                 //END !!!!
+                frame.restartProgram(frame, "Tolerable level of residual risk.\n");
             }
             if(residualRisk.compareTo(acceptableRisk)>0){
                 System.out.println("The type of personal protective equipment have to be reconsidered.");
-                residualRisk();
-                // !!!!!!!!!! TUKA SI!!!!!
+                JOptionPane.showMessageDialog(frame,"The type of personal protective equipment have to be reconsidered.\nThe residual risk needs to be lower than the acceptable risk\n","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                residualRisk(level);
             }
             else{
                 System.out.println("Error");

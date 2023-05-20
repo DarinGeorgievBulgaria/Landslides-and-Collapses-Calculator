@@ -7,7 +7,7 @@ public class Calculator {
     // TT == Text Translation
     private NewFrame newFrame;
     String input;
-    public Calculator(NewFrame newFrame){
+    public Calculator(NewFrame newFrame) throws InterruptedException {
         this.newFrame = newFrame;
 
         Scanner reader = new Scanner(System.in);
@@ -29,8 +29,8 @@ public class Calculator {
                 }
                 frequency = new BigDecimal(input);
             }catch (InputMismatchException | NumberFormatException | InterruptedException e){
-                System.out.println("Please enter a number within the boundaries1");
-                JOptionPane.showMessageDialog(newFrame,"Please use a natural number1!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                System.out.println("Please enter a number within the boundaries");
+                JOptionPane.showMessageDialog(newFrame,"Please use a natural number!","Wrong input", JOptionPane.PLAIN_MESSAGE);
                 newFrame.setInputNum(null);
                 continue;
             }
@@ -40,13 +40,13 @@ public class Calculator {
                 break;
             }
             else {
-                System.out.println("Please enter a number within the boundaries2"); // ТТ: Моля въведете чусло между границите.
-                JOptionPane.showMessageDialog(newFrame,"Please use a natural number2!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                System.out.println("Please enter a number within the boundaries"); // ТТ: Моля въведете чусло между границите.
+                JOptionPane.showMessageDialog(newFrame,"Please use a natural number!","Wrong input", JOptionPane.PLAIN_MESSAGE);
                 newFrame.setInputNum(null);
             }
         }
     }
-    public void measureRisk(BigDecimal freq){
+    public void measureRisk(BigDecimal freq) throws InterruptedException {
         if(freq.compareTo(new BigDecimal("0.1"))>=0){
             HigherRisk veryHighRisk = new HigherRisk("very high", newFrame);
         }
@@ -68,6 +68,7 @@ public class Calculator {
         }
         else if(freq.compareTo(new BigDecimal("0.00001"))<0){   //freq<0.00001
             System.out.println("Acceptable risk");
+            newFrame.restartProgram(newFrame,"Acceptable risk.\n");
             // END PROGRAM
         }
     }

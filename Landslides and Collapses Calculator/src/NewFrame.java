@@ -9,6 +9,7 @@ public class NewFrame extends JFrame implements ActionListener {
     private JButton button;
     private JPanel panel;
     private String inputNum;
+
     NewFrame(){
         this.setTitle("Landslides and collapses");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,6 +56,17 @@ public class NewFrame extends JFrame implements ActionListener {
     public void setInputNum(String inputNum){
         this.inputNum = inputNum;
     }
+
+    public void restartProgram(NewFrame frame, String text) throws InterruptedException {
+        frame.getTextArea().setText(text);
+        for(int i=5; i>-1;i--){
+            Thread.sleep(1000);
+            frame.getTextArea().append(i+"\n");
+        }
+        frame.dispose();
+        Main.main(null);
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

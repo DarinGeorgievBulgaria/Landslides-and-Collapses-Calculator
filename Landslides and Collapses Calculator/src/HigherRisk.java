@@ -6,7 +6,8 @@ public class HigherRisk implements Risk {
     private String level;
     private NewFrame frame;
 
-    public HigherRisk(String level, NewFrame frame) {
+
+    public HigherRisk(String level, NewFrame frame) throws InterruptedException {
         this.level = level;
         this.frame = frame;
         frame.getTextArea().setText("");
@@ -32,7 +33,7 @@ public class HigherRisk implements Risk {
                     inputNumPrev = Double.parseDouble(input);
                 } catch (InputMismatchException | InterruptedException | NumberFormatException e) {
                     System.out.println("Please enter a natural number:");
-                    JOptionPane.showMessageDialog(frame, "Please use a natural number!3", "Wrong input", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, "Please use a natural number!", "Wrong input", JOptionPane.PLAIN_MESSAGE);
                     frame.setInputNum(null);
                     //reader.nextLine();
                     continue;
@@ -43,7 +44,7 @@ public class HigherRisk implements Risk {
                     break;
                 } else {
                     System.out.println("Please use natural number.");
-                    JOptionPane.showMessageDialog(frame, "Please use a natural number!4", "Wrong input", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, "Please use a natural number!", "Wrong input", JOptionPane.PLAIN_MESSAGE);
                     frame.setInputNum(null);
                 }
             }
@@ -82,15 +83,15 @@ public class HigherRisk implements Risk {
             if (inputNumPrev <= inputPrevMax) {
                 System.out.println("very high to just high");
                 printInfo("high");
+                Thread.sleep(5000);
                 LowerRisk highToLow = new LowerRisk("medium",frame);
             }
             else {
-                JOptionPane.showMessageDialog(frame,"Economically inexpedient preventive activities. \nNecessity of route change.","Info", JOptionPane.PLAIN_MESSAGE);
+                //JOptionPane.showMessageDialog(frame,"Economically inexpedient preventive activities. \nNecessity of route change.","Info", JOptionPane.PLAIN_MESSAGE);
                 System.out.println("Economically inexpedient preventive activities");
                 System.out.println("Necessity of route change");
-                System.exit(0);
+                frame.restartProgram(frame, "Economically inexpedient preventive activities. \nNecessity of route change.\n");
             }
-
         }
     }
 
