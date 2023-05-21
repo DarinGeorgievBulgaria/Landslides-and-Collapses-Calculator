@@ -11,13 +11,16 @@ public class LowerRisk implements Risk{
         this.frame = frame;
         frame.getTextArea().setText("");
         frame.setInputNum(null);
-        if(level.equals("medium")){
+        //if(level.equals("medium")){
+        if(level.equals("средно")){
             residualRisk(level);
         }
-        else if(level.equals("low")){
+        //else if(level.equals("low")){
+        else if(level.equals("ниско")){
             residualRisk(level);
         }
-        else if(level.equals("very low")){
+        //else if(level.equals("very low")){
+        else if(level.equals("много ниско")){
             residualRisk(level);
         }
     }
@@ -26,9 +29,13 @@ public class LowerRisk implements Risk{
         System.out.println("That is "+ level + " level of risk"); // ТТ: МВ - Много високо ниво на риск.
         System.out.println("Determination of preventive construction and installation works on the site to reduce the "+ level + " level of risk"); // ТТ: Определяне на превантивни строително монтажни работи  на обекта за намаляване нивото на риска
         System.out.println("Determining the type of personal protective equipment");
-        frame.getTextArea().setText("That is " + level +  " level of risk. \n");
-        frame.getTextArea().append("Determination of preventive construction and installation works on the site to reduce the "+ level + " level of risk. \n");
-        frame.getTextArea().append("Determining the type of personal protective equipment. \n");
+        //frame.getTextArea().setText("That is " + level +  " level of risk. \n");
+        frame.getTextArea().setText("Това е " + level +  " ниво на риск. \n");
+        //frame.getTextArea().append("Determination of preventive construction and installation works on the site to reduce the "+ level + " level of risk. \n");
+        frame.getTextArea().append("Определете превантивни струително монтажни работи на обекта за намаляване на нивото на риск. \n");
+        //frame.getTextArea().append("Determining the type of personal protective equipment. \n");
+        frame.getTextArea().append("Определете вида на личните предпазни средства. \n");
+
     }
 
     public void residualRisk(String newLevel) throws InterruptedException {
@@ -37,7 +44,8 @@ public class LowerRisk implements Risk{
         BigDecimal acceptableRisk;
         String input;
         System.out.println("Enter the value of residual risk (to 0.00001)"); // ТТ:
-        frame.getTextArea().append("Enter the value of residual risk (to 0.00001)");
+        //frame.getTextArea().append("Enter the value of residual risk (to 0.00001)");
+        frame.getTextArea().append("Въведете стойността на нивото на остатъчен риск (до 0.00001)");
         while (true) {
             try {
                 while (true) {
@@ -52,7 +60,8 @@ public class LowerRisk implements Risk{
                 residualRisk = new BigDecimal(input);
             } catch (InputMismatchException | InterruptedException | NumberFormatException e) {
                 System.out.println("Please enter a number within the boundaries");
-                JOptionPane.showMessageDialog(frame, "Please use a natural number1!", "Wrong input", JOptionPane.PLAIN_MESSAGE);
+                //JOptionPane.showMessageDialog(frame, "Please enter a number within the boundaries!", "Wrong input", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Въведете стойност в ограниченията!", "Грешно число", JOptionPane.PLAIN_MESSAGE);
                 frame.setInputNum(null);
                 continue;
             }
@@ -62,12 +71,14 @@ public class LowerRisk implements Risk{
             }
             else {
                 System.out. println("Please use a number within the boundaries");
-                JOptionPane.showMessageDialog(frame,"Please use a number not lower than 0.00001!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                //JOptionPane.showMessageDialog(frame,"Please use a number not lower than 0.00001!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(frame,"Въведете число не по-ниско от 0.00001!","Грешно число", JOptionPane.PLAIN_MESSAGE);
                 frame.setInputNum(null);
             }
         }
         printInfo(level);
-        frame.getTextArea().append("Enter the value of acceptable risk (to 0.0001)");
+        //frame.getTextArea().append("Enter the value of acceptable risk (to 0.0001)");
+        frame.getTextArea().append("Въведете стойността на приемливия риск (до 0.0001)");
         System.out.println("Enter the value of acceptable risk (to 0.0001)"); // ТТ:
             while (true){
                 try{
@@ -84,7 +95,8 @@ public class LowerRisk implements Risk{
                     acceptableRisk = new BigDecimal(input);
                 }catch (InputMismatchException | NumberFormatException | InterruptedException e){
                     System.out.println("Please enter a number within the boundaries");
-                    JOptionPane.showMessageDialog(frame,"Please use a number not lower than 0.00001!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                    //JOptionPane.showMessageDialog(frame,"Please use a number not lower than 0.00001!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(frame,"Въведете число не по-малко от 0.00001!","Грешно число", JOptionPane.PLAIN_MESSAGE);
                     frame.setInputNum(null);
                     continue;
                 }
@@ -94,18 +106,21 @@ public class LowerRisk implements Risk{
                 }
                 else {
                     System.out.println("Please enter a number within the boundaries"); // ТТ: Моля въведете чусло между границите.
-                    JOptionPane.showMessageDialog(frame,"Please use a number not lower than 0.00001!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                    //JOptionPane.showMessageDialog(frame,"Please use a number not lower than 0.00001!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(frame,"Въведете число не по-малко от 0.00001!","Грешно число", JOptionPane.PLAIN_MESSAGE);
                     frame.setInputNum(null);
                 }
             }
             if(residualRisk.compareTo(acceptableRisk)<=0){
                 System.out.println("Tolerable level of residual risk");
                 //END !!!!
-                frame.restartProgram(frame, "Tolerable level of residual risk.\n");
+                //frame.restartProgram(frame, "Tolerable level of residual risk.\n");
+                frame.restartProgram(frame, "Допустимо ниво на риск.\n");
             }
             if(residualRisk.compareTo(acceptableRisk)>0){
                 System.out.println("The type of personal protective equipment have to be reconsidered.");
-                JOptionPane.showMessageDialog(frame,"The type of personal protective equipment have to be reconsidered.\nThe residual risk needs to be lower than the acceptable risk\n","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                //JOptionPane.showMessageDialog(frame,"The type of personal protective equipment have to be reconsidered.\nThe residual risk needs to be lower than the acceptable risk\n","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(frame,"Типа на личните предпазни средства трябва да се преосмисли.\nОстатъчния риск трябва да е по малко от допустимия риск\n","Грешка", JOptionPane.PLAIN_MESSAGE);
                 residualRisk(level);
             }
             else{

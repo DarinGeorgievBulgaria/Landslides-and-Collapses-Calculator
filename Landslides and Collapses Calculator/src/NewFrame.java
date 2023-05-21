@@ -11,7 +11,8 @@ public class NewFrame extends JFrame implements ActionListener {
     private String inputNum;
 
     NewFrame(){
-        this.setTitle("Landslides and collapses");
+        //this.setTitle("Landslides and collapses");
+        this.setTitle("Срутища и свлачища");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(500,300);
@@ -31,7 +32,8 @@ public class NewFrame extends JFrame implements ActionListener {
         textField.setPreferredSize(new Dimension(150,30));
         textField.setHorizontalAlignment(JTextField.CENTER);
 
-        button = new JButton("Submit");
+        //button = new JButton("Submit");
+        button = new JButton("Въведи");
         button.addActionListener(this);
 
         panel.add(textArea);

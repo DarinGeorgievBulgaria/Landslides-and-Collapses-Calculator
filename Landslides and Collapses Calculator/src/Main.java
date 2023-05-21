@@ -12,8 +12,8 @@ public class Main {
         double numRiskFactors = 0;
         String input;
         System.out.println("Enter number of Risk Factors"); // TT: Въведете брой рискови фактори.
-        frame.getTextArea().setText("Enter number of risk factors");
-        mediumLoop:
+        //frame.getTextArea().setText("Enter number of risk factors.");
+        frame.getTextArea().setText("Въведете брой рискови фактори.");
         while (true){
             try{
                 smallLoop:
@@ -30,19 +30,21 @@ public class Main {
                 numRiskFactors = Double.parseDouble(input);
             }catch (InputMismatchException | InterruptedException | NumberFormatException  e){
                 System.out.println("Please use a natural number1.");
-                JOptionPane.showMessageDialog(frame,"Please use a natural number!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                //JOptionPane.showMessageDialog(frame,"Please use a natural number!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(frame,"Въведете цяло число!","Грешно число", JOptionPane.PLAIN_MESSAGE);
                 frame.setInputNum(null);
                 //reader.nextLine();
-                continue mediumLoop;
+                continue;
             }
 
             if(numRiskFactors % 1 == 0 && numRiskFactors>=0){
                 frame.setInputNum(null);
-                break mediumLoop;
+                break;
             }
             else{
                 System.out.println("Please use a natural number.");
-                JOptionPane.showMessageDialog(frame,"Please use a natural number!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                //JOptionPane.showMessageDialog(frame,"Please use a natural number!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(frame,"Въведете цяло число!","Грешно число", JOptionPane.PLAIN_MESSAGE);
                 frame.setInputNum(null);
             }
         }
@@ -50,12 +52,14 @@ public class Main {
         if(numRiskFactors >= 2){
             System.out.println("Unacceptable risk"); // TT: Неприемлив риск
             System.out.println("Assessment of the level of risk depending on the frequency of occurrence of collapses / collapses"); // ТТ: Оценка на нивото на риска в зависимост от честотата на възникване на свлачища/ срутища.
-            frame.getTextArea().setText("Unacceptable risk.\nAssess the level of risk depending on the frequency of occurrence of collapses / collapses");
+            //frame.getTextArea().setText("Unacceptable risk.\nAssess the level of risk depending on the frequency of occurrence of collapses / collapses");
+            frame.getTextArea().setText("Неприемлив риск!\nОценете нивото на риска в зависимост от честотата на възникване на свачища/срутища.");
             Calculator calculator = new Calculator(frame);
         }
         else {
 
-            frame.restartProgram(frame,"Acceptable risk\nProgram is going to restart in: \n");
+            //frame.restartProgram(frame,"Acceptable risk\nProgram is going to restart in: \n");
+            frame.restartProgram(frame,"Приемлив риск.\nПрограмата ще се рестартира след: \n");
         }
 
     }
