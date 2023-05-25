@@ -15,17 +15,16 @@ public class NewFrame extends JFrame implements ActionListener {
         this.setTitle("Срутища и свлачища");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.setSize(500,300);
+        this.setSize(500,350);
 
         panel = new JPanel();
 
         textArea = new JTextArea();
-        //labelMain.setHorizontalAlignment(JLabel.CENTER);
         textArea.setEditable(false);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setFont(new Font("SansSerif", Font.PLAIN,20));
-        textArea.setPreferredSize(new Dimension(450,200));
+        textArea.setPreferredSize(new Dimension(450,250));
         textArea.setAlignmentX(SwingConstants.CENTER);
 
         textField = new JTextField(20);
