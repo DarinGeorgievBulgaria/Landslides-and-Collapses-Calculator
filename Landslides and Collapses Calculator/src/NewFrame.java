@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.InputMismatchException;
 
 public class NewFrame extends JFrame implements ActionListener {
     private JTextArea textArea;
@@ -66,7 +67,42 @@ public class NewFrame extends JFrame implements ActionListener {
         frame.dispose();
         Main.main(null);
     }
+    public String getInput() throws InterruptedException {
+        while(true){
+            if(inputNum != null){
+                break;
+            }
+            else{
+                Thread.sleep(500);
+                System.out.println("Waiting for input");
+            }
+        }
+        return inputNum;
+    }
+    public int getRealNum(){
+        int returnRealNum;
+        while (true){
+            try{
+                returnRealNum = Integer.parseInt(getInput());
+            }catch (InputMismatchException | NumberFormatException | InterruptedException  e){
+                System.out.println("Please use a natural number1.");
+                JOptionPane.showMessageDialog(this,"Please use a natural number!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                this.setInputNum(null);
+                continue;
+            }
 
+            if(returnRealNum >= 0){
+                this.setInputNum(null);
+                break;
+            }
+            else{
+                System.out.println("Please use a natural number.");
+                JOptionPane.showMessageDialog(this,"Please use a natural number!","Wrong input", JOptionPane.PLAIN_MESSAGE);
+                this.setInputNum(null);
+            }
+        }
+        return returnRealNum;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

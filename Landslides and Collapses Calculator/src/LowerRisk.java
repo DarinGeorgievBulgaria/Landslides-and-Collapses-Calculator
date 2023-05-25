@@ -40,16 +40,7 @@ public class LowerRisk implements Risk{
         frame.getTextArea().append("Enter the value of residual risk (to 0.00001)");
         while (true) {
             try {
-                while (true) {
-                    if (frame.getInputNum() != null) {
-                        input = frame.getInputNum();
-                        break;
-                    } else {
-                        Thread.sleep(1000);
-                        System.out.println("Waiting");
-                    }
-                }
-                residualRisk = new BigDecimal(input);
+                residualRisk = new BigDecimal(frame.getInput());
             } catch (InputMismatchException | InterruptedException | NumberFormatException e) {
                 System.out.println("Please enter a number within the boundaries");
                 JOptionPane.showMessageDialog(frame, "Please use a natural number1!", "Wrong input", JOptionPane.PLAIN_MESSAGE);
@@ -71,17 +62,7 @@ public class LowerRisk implements Risk{
         System.out.println("Enter the value of acceptable risk (to 0.0001)"); // ТТ:
             while (true){
                 try{
-                    while (true){
-                        if(frame.getInputNum()!=null){
-                            input = frame.getInputNum();
-                            break;
-                        }
-                        else{
-                            Thread.sleep(1000);
-                            System.out.println("Waiting");
-                        }
-                    }
-                    acceptableRisk = new BigDecimal(input);
+                    acceptableRisk = new BigDecimal(frame.getInput());
                 }catch (InputMismatchException | NumberFormatException | InterruptedException e){
                     System.out.println("Please enter a number within the boundaries");
                     JOptionPane.showMessageDialog(frame,"Please use a number not lower than 0.00001!","Wrong input", JOptionPane.PLAIN_MESSAGE);

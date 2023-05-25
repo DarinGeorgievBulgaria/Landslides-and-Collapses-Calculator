@@ -14,72 +14,16 @@ public class HigherRisk implements Risk {
         frame.setInputNum(null);
         if (level.equals("very high")) {
             printInfo(level);
-            double inputNumPrev;
-            double inputPrevMax;
-            String input;
             frame.getTextArea().append("\n" + "Enter the value of preventive activities:");
             System.out.println("Enter the value of preventive activities:");
-            while (true) {
-                try {
-                    while (true) {
-                        if (frame.getInputNum() != null) {
-                            input = frame.getInputNum();
-                            break;
-                        } else {
-                            Thread.sleep(1000);
-                            System.out.println("Waiting");
-                        }
-                    }
-                    inputNumPrev = Double.parseDouble(input);
-                } catch (InputMismatchException | InterruptedException | NumberFormatException e) {
-                    System.out.println("Please enter a natural number:");
-                    JOptionPane.showMessageDialog(frame, "Please use a natural number!", "Wrong input", JOptionPane.PLAIN_MESSAGE);
-                    frame.setInputNum(null);
-                    //reader.nextLine();
-                    continue;
-                }
+            int inputNumPrev = frame.getRealNum();
 
-                if (inputNumPrev % 1 == 0 && inputNumPrev >= 0) {
-                    frame.setInputNum(null);
-                    break;
-                } else {
-                    System.out.println("Please use natural number.");
-                    JOptionPane.showMessageDialog(frame, "Please use a natural number!", "Wrong input", JOptionPane.PLAIN_MESSAGE);
-                    frame.setInputNum(null);
-                }
-            }
             System.out.println("Economic feasibility criterion");
             frame.getTextArea().setText("Economic feasibility criterion\n");
             System.out.println("Enter the maximum value of the preventive activities:");
             frame.getTextArea().append("Enter the maximum value of the preventive activities:");
-            while (true) {
-                try {
-                    while (true) {
-                        if (frame.getInputNum() != null) {
-                            input = frame.getInputNum();
-                            break;
-                        } else {
-                            Thread.sleep(1000);
-                            System.out.println("Waiting");
-                        }
-                    }
-                    inputPrevMax = Double.parseDouble(input);
-                }catch (InputMismatchException | InterruptedException | NumberFormatException e) {
-                    System.out.println("Please enter a natural number");
-                    JOptionPane.showMessageDialog(frame,"Please use a natural number!","Wrong input", JOptionPane.PLAIN_MESSAGE);
-                    frame.setInputNum(null);
-                    continue;
-                }
-                if (inputPrevMax % 1 == 0 && inputPrevMax >= 0) {
-                    frame.setInputNum(null);
-                    break;
-                }
-                else {
-                    System.out.println("Please use natural number");
-                    JOptionPane.showMessageDialog(frame,"Please use a natural number!","Wrong input", JOptionPane.PLAIN_MESSAGE);
-                    frame.setInputNum(null);
-                }
-            }
+            int inputPrevMax = frame.getRealNum();
+
             if (inputNumPrev <= inputPrevMax) {
                 highLevel();
             }
