@@ -3,25 +3,27 @@ import java.math.BigDecimal;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * This is the Calculator class which is responsible for determining the level of risk depending on the user's input.
+ * @author Darin Georgiev
+ */
 public class Calculator {
     // TT == Text Translation
-    private NewFrame frame;
-    String input;
+    private final NewFrame frame;
+
+    /**
+     * This is the Calculator constructor which takes NewFrame object as argument.
+     * The other functionality is that it takes input as a BigDecimal and initiates the measureRisk method.
+     * @param frame - this is the window on which messages are displayed and numbers can be inputted.
+     * @throws InterruptedException - that is due the measureRisk() method.
+     */
     public Calculator(NewFrame frame) throws InterruptedException {
         this.frame = frame;
 
-        BigDecimal frequency;
         System.out.println("Enter the frequency of occurrence of landslides/collapses (from 0.000001 to 0.2)"); // ТТ: Въведете число на честотата на възникване на свлачища
         frame.getTextArea().append("\n"+ "Enter the frequency of occurrence of landslides/collapses (from 0.000001 to 0.2)");
         while (true){
-            try{
-                frequency = new BigDecimal(frame.getInput());
-            }catch (InputMismatchException | NumberFormatException e){
-                System.out.println("Please enter a number within the boundaries");
-                JOptionPane.showMessageDialog(frame,"Please enter a number within the boundaries!","Wrong input", JOptionPane.PLAIN_MESSAGE);
-                frame.setInputNum(null);
-                continue;
-            }
+             BigDecimal frequency = frame.getBigDecimal();
             if(frequency.compareTo(new BigDecimal("0.2"))<=0 && frequency.compareTo(new BigDecimal("0.000001"))>=0){
                 measureRisk(frequency);
                 frame.setInputNum(null);
@@ -34,6 +36,12 @@ public class Calculator {
             }
         }
     }
+
+    /**
+     * This method checks in which category the Big Decimal number belongs to and then creates an instance of the according risk level.
+     * @param freq - the level of risk as Big Decimal
+     * @throws InterruptedException
+     */
     public void measureRisk(BigDecimal freq) throws InterruptedException {
         if(freq.compareTo(new BigDecimal("0.1"))>=0){
             HigherRisk veryHighRisk = new HigherRisk("very high", frame);

@@ -5,6 +5,13 @@ import java.util.Scanner;
 import java.util.concurrent.*;
 
 public class Main {
+    /**
+     * This is the main class which creates the first instance of NewFrame and pass it to the Calculator class
+     * if the number of risk factors is unacceptable.
+     * @param args
+     * @throws InterruptedException
+     * @author Darin Georgiev
+     */
     // TT == Text Translation
     public static void main(String[] args) throws InterruptedException {
         NewFrame frame = new NewFrame();

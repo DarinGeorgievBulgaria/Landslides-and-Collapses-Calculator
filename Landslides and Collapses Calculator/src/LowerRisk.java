@@ -3,24 +3,38 @@ import java.math.BigDecimal;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * This class is for Medium (M), Low (L) and Very Low (VL) level of risk.
+ * It implements the Risk interface and the printInfo() method is overridden.
+ */
 public class LowerRisk implements Risk{
     private String level;
     private NewFrame frame;
+    /**
+     * This constructor contains the functionality for medium, low, very low levels of risk.
+     * @param level - String for the level of risk. Works with "very high" and "high".
+     * @param frame - NewFrame object needs to be passed.
+     * @throws InterruptedException
+     */
     public LowerRisk(String level, NewFrame frame) throws InterruptedException {
         this.level = level;
         this.frame = frame;
         frame.getTextArea().setText("");
         frame.setInputNum(null);
         if(level.equals("medium")){
-            residualRisk(level);
+            residualAndAcceptableRisk(level);
         }
         else if(level.equals("low")){
-            residualRisk(level);
+            residualAndAcceptableRisk(level);
         }
         else if(level.equals("very low")){
-            residualRisk(level);
+            residualAndAcceptableRisk(level);
         }
     }
+    /**
+     * This method is overridden from the Risk interface. It displays informative text on the frame.
+     * @param level - level of risk
+     */
     @Override
     public void printInfo(String level) {
         System.out.println("That is "+ level + " level of risk"); // ТТ: МВ - Много високо ниво на риск.
@@ -31,7 +45,12 @@ public class LowerRisk implements Risk{
         frame.getTextArea().append("Determining the type of personal protective equipment. \n");
     }
 
-    public void residualRisk(String newLevel) throws InterruptedException {
+    /**
+     * This method is to take and compare the residual and the acceptable risk.
+     * @param newLevel - this is the level of risk, and it is used in the printInfo() method.
+     * @throws InterruptedException
+     */
+    public void residualAndAcceptableRisk(String newLevel) throws InterruptedException {
         printInfo(newLevel);
         BigDecimal residualRisk;
         BigDecimal acceptableRisk;
@@ -39,14 +58,7 @@ public class LowerRisk implements Risk{
         System.out.println("Enter the value of residual risk (to 0.00001)"); // ТТ:
         frame.getTextArea().append("Enter the value of residual risk (to 0.00001)");
         while (true) {
-            try {
-                residualRisk = new BigDecimal(frame.getInput());
-            } catch (InputMismatchException | InterruptedException | NumberFormatException e) {
-                System.out.println("Please enter a number within the boundaries");
-                JOptionPane.showMessageDialog(frame, "Please use a natural number1!", "Wrong input", JOptionPane.PLAIN_MESSAGE);
-                frame.setInputNum(null);
-                continue;
-            }
+            residualRisk = frame.getBigDecimal();
             if(residualRisk.compareTo(new BigDecimal("0.00001"))>=0){
                 frame.setInputNum(null);
                 break;
@@ -61,14 +73,7 @@ public class LowerRisk implements Risk{
         frame.getTextArea().append("Enter the value of acceptable risk (to 0.0001)");
         System.out.println("Enter the value of acceptable risk (to 0.0001)"); // ТТ:
             while (true){
-                try{
-                    acceptableRisk = new BigDecimal(frame.getInput());
-                }catch (InputMismatchException | NumberFormatException | InterruptedException e){
-                    System.out.println("Please enter a number within the boundaries");
-                    JOptionPane.showMessageDialog(frame,"Please use a number not lower than 0.00001!","Wrong input", JOptionPane.PLAIN_MESSAGE);
-                    frame.setInputNum(null);
-                    continue;
-                }
+                acceptableRisk = frame.getBigDecimal();
                 if(acceptableRisk.compareTo(new BigDecimal("0.0001"))>=0){
                     frame.setInputNum(null);
                     break;
@@ -87,17 +92,25 @@ public class LowerRisk implements Risk{
             if(residualRisk.compareTo(acceptableRisk)>0){
                 System.out.println("The type of personal protective equipment have to be reconsidered.");
                 JOptionPane.showMessageDialog(frame,"The type of personal protective equipment have to be reconsidered.\nThe residual risk needs to be lower than the acceptable risk\n","Wrong input", JOptionPane.PLAIN_MESSAGE);
-                residualRisk(level);
+                residualAndAcceptableRisk(level);
             }
             else{
                 System.out.println("Error");
             }
         }
 
-
+    /**
+     * This is a GET method for the string of the level of risk.
+     * @return level which is a string
+     */
     public String getLevel(){
         return level;
     }
+
+    /**
+     * This is a SET method which is to modify the level of risk.
+     * @param str this is the new level of risk
+     */
     public void setLevel(String str){
         this.level = str;
     }
